@@ -12,7 +12,9 @@
     "postcss-import": "^12.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0"
+    "react-scripts": "3.3.0",
+    "sequelize": "^5.21.3",
+    "sqlite3": "^4.0.0"
   },
   "scripts": {
     "build:style": "postcss src/styles/index.css -o src/styles/tailwind.css",
@@ -37,6 +39,7 @@
     ]
   },
   "devDependencies": {
+    "sequelize-cli": "^5.5.1",
     "tailwindcss": "^1.1.4"
   }
 }
