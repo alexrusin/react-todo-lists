@@ -3,16 +3,16 @@ import {useState, useRef} from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 
-import {useHistory} from 'react-router-dom'
+const cardImageStyle = {
+  backgroundImage: 'url(\'https://source.unsplash.com/ck0i9Dnjtj0/600x800\')'
+};
 
-const Login = () => {      
+const Login = ({history}) => {      
   
       const [error, setError] = useState({isError: false, errorMessage: ''});
       let usernameRef = useRef();
       let passwordRef = useRef();
-      let history = useHistory;
-     
-  
+    
       async function handleLogin() {
           const username = usernameRef.current.value;
           const password = passwordRef.current.value;
@@ -62,7 +62,7 @@ const Login = () => {
     <div className="flex justify-center px-6 my-12">
       <div className="w-full xl:w-3/4 lg:w-11/12 flex">
         <div
-          className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 rounded-l-lg card-image"
+          className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 rounded-l-lg" style={cardImageStyle}
         ></div>
         <div className="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
           <h3 className="pt-4 text-2xl text-center">Welcome Back!</h3>
@@ -105,12 +105,12 @@ const Login = () => {
             </div>
             <hr className="mb-6 border-t" />
             <div className="text-center">
-              <a
+              <Link
                 className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-                href="./register.html"
+                to="/register"
               >
                 Create an Account!
-              </a>
+              </Link>
            
             </div>
             <div className="text-center">
@@ -126,11 +126,6 @@ const Login = () => {
       </div>
     </div>
   </div>
-        <style jsx>{`
-        .card-image {
-            background-image: url('https://source.unsplash.com/ck0i9Dnjtj0/600x800');
-        }
-      `}</style>
     </>
   )
 }

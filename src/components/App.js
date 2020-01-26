@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+const cardImageStyle = {
+  backgroundImage: 'url(\'https://source.unsplash.com/94Ld_MtIUf0/600x800\')'
+};
+
 const App = () => {
   return (
     <>
@@ -10,7 +14,7 @@ const App = () => {
           <div className="w-full xl:w-3/4 lg:w-11/12 flex">
            
             <div
-              className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg card-image"
+              className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg" style={cardImageStyle}
             ></div>
            
             <div className="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
@@ -47,11 +51,6 @@ const App = () => {
           </div>
         </div>
         </div>
-        <style jsx>{`
-        .card-image {
-            background-image: url('https://source.unsplash.com/94Ld_MtIUf0/600x800');
-        }
-      `}</style>
     </>
   )
 }

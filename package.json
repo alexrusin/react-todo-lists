@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "autoprefixer": "^9.7.4",
     "axios": "^0.19.2",
+    "cors": "^2.8.5",
     "custom-env": "^1.0.2",
     "express": "^4.17.1",
     "postcss-cli": "^7.1.0",
@@ -17,7 +18,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "sequelize": "^5.21.3",
-    "sqlite3": "^4.0.0"
+    "sqlite3": "^4.0.0",
+    "validator": "^12.2.0"
   },
   "scripts": {
     "build:style": "postcss src/styles/index.css -o src/styles/tailwind.css",
