@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const App = () => {
   return (
@@ -22,23 +23,23 @@ const App = () => {
               <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
                 <div className="mb-6 text-center">
                
-                <button
+                <Link
                     className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-                    type="button"
+                    to="/register"
                 >
                     Get Started
-                </button>
+                </Link>
               
                  
                 </div>
                 <hr className="mb-6 border-t" />
                 <div className="text-center">
                
-                  <a href="https://google.com"
+                  <Link to="/login"
                     className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
                   >
                     Already have an account? Login!
-                  </a>
+                  </Link>
                 
                 </div>
               </form>
