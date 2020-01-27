@@ -63,7 +63,7 @@ const Register = ({ history }) => {
             return;
         }
 
-        axios.post('/api/register', {
+        axios.post(process.env.REACT_APP_API_URL + '/api/register', {
             name,
             email,
             password

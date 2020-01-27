@@ -9,7 +9,7 @@ const Lists = (props) => {
             router.push('/');
         }
 
-        window.axios.post('https://localhost:3030/api/logout', {
+        window.axios.post(process.env.REACT_APP_API_URL + '/api/logout', {
             token
         }).then((response) => {
             localStorage.removeItem('token');
