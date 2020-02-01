@@ -5,6 +5,7 @@ import Login from '../components/Login';
 import Register from '../components/Register';
 import Lists from '../components/Lists';
 import NotFoundPage from '../components/NotFoundPage';
+import PrivateRoute from '../components/PrivateRoute';
 
 export default function AppRouter() {
     return (
@@ -13,7 +14,7 @@ export default function AppRouter() {
             <Route path="/" component={App} exact={true} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route path="/lists" component={Lists} />
+            <PrivateRoute path="/lists" component={Lists} />
             <Route component={NotFoundPage} />
         </Switch> 
     </BrowserRouter>

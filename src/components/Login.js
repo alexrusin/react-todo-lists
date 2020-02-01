@@ -18,43 +18,40 @@ const Login = ({history}) => {
           const password = passwordRef.current.value;
   
           if (!username || !password) {
-              setError(prevError => {
-              return {
+              setError({
                   isError: true,
                   errorMessage: 'Please provide username and/or password'
-              }
               });
               return;
           }
   
-          setError(prevError => {
-              return {
+          setError({
                   isError: false,
                   errorMessage: ''
-              }
-          });
+              });
   
-          try {
-              const result = await axios.post('/api/login', {
+         axios.post(process.env.REACT_APP_API_URL + '/api/users/login', {
                   username,
                   password
+              }).then(({data}) => {
+                localStorage.setItem('token', data.token);
+                history.push('/lists');
+              }).catch((error) => {
+                
+                if (error.response.data.errorMessage) {
+                  setError({
+                    isError: true,
+                    errorMessage: error.response.data.errorMessage
+                  });
+                } else {
+                  setError({
+                    isError: true,
+                    errorMessage: 'Error logging in'
+                  });
+                  console.log(error);
+                }
+                
               });
-  
-              if (result.data.token) {
-                  localStorage.setItem('token', result.data.token);
-                  history.push('/lists');
-              }
-  
-              history.push('/lists');
-  
-          } catch (err) {
-              setError(prevError => {
-                  return {
-                      isError: true,
-                      errorMessage: 'Username and/or password you provided are incorrect'
-                  }
-              });
-          }
       }
   return (
     <>

@@ -9,14 +9,13 @@ const Lists = (props) => {
             router.push('/');
         }
 
-        window.axios.post(process.env.REACT_APP_API_URL + '/api/logout', {
+        window.axios.post(process.env.REACT_APP_API_URL + '/api/users/logout', {
             token
         }).then((response) => {
             localStorage.removeItem('token');
             router.push('/');
         }).catch((error) => {
-            localStorage.removeItem('token');
-            router.push('/');
+            console.log(error);
         });
     }
 
