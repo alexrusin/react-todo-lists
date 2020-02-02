@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -13,9 +13,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
             await window.axios.post(process.env.REACT_APP_API_URL + '/api/users/is-logged-in', {
                 token
             });
-
+            setIsLoggedIn(true)
         } catch (err) {
-            setIsLoggedIn(false)
+            
         }
     }
 
@@ -27,10 +27,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        isLoggedIn ? (
+        !isLoggedIn ? (
           <Component {...props} />
         ) : (
-          <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+          <Redirect to={{ pathname: '/lists', state: { from: props.location } }} />
         )
       }
     />
