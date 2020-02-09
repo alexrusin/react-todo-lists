@@ -7,12 +7,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+  
     const checkIfLoggedIn = async () => {
         try {
-            await window.axios.post(process.env.REACT_APP_API_URL + '/api/users/is-logged-in', {
-                token
-            });
+            await window.axios.get(process.env.REACT_APP_API_URL + '/api/users/is-logged-in');
             setIsLoggedIn(true)
         } catch (err) {
             

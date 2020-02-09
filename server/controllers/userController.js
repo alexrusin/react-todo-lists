@@ -51,16 +51,8 @@ exports.login = async (req, res) => {
 };
 
 exports.logout = async (req, res) => {
-    const token = req.body.token;
-
-    const user = await User.findOne({ where: { token } });
-
-    if (!user) {
-        res.status(404).json({
-            errorMessage: 'User not found'
-        });
-        return;
-    }
+    
+    const user = req.user;
 
     try {
         await user.update({ token: null })
@@ -77,25 +69,7 @@ exports.logout = async (req, res) => {
 };
 
 exports.isLoggedIn = async (req, res) => {
-    const token = req.body.token;
-
-    if (!token) {
-        res.status(404).json({
-            errorMessage: 'User not found'
-        });
-        return;
-    }
-
-    const user = await User.findOne({ where: { token } });
-
-    if (!user) {
-        res.status(404).json({
-            errorMessage: 'User not found'
-        });
-        return;
-    }
-
     res.status(200).json({
-        message: 'Success'
+        userName: req.user.name
     });
 };

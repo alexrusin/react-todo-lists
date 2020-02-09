@@ -35,6 +35,7 @@ const Login = ({history}) => {
                   password
               }).then(({data}) => {
                 localStorage.setItem('token', data.token);
+                window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.token;
                 history.push('/lists');
               }).catch((error) => {
                 

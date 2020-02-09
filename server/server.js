@@ -2,8 +2,10 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const publicPath = path.join(__dirname, '..', 'build');
+const errorHandler = require('./middleware/errorHandler');
 
 const userRouter = require('./routes/userRouter');
+const listRouter = require('./routes/listRouter');
 
 
 
@@ -11,7 +13,7 @@ const userRouter = require('./routes/userRouter');
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     next();
   });
   
@@ -21,7 +23,8 @@ app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 app.use('/api/users', userRouter);
-
+app.use('/api/lists', listRouter);
+app.use(errorHandler);
 
 app.get('/api/hello', (req, res) => {
     res.json({greeting: 'Hello there'});
